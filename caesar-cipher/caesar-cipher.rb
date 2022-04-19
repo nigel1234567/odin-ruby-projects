@@ -1,10 +1,9 @@
 
 def caesar_cipher(string, number)
   # Part 1: Create range of alphabets in array
-    alphabets = [*("a".."z"),*("A"..."Z")]
+    alphabets = [*("a".."z"),*("A".."Z")]
     index = [*(1..26),*(101..126)]
     hash = Hash[alphabets.zip index]
-    puts hash
 
   # Part 2: Convert string to array
     # Split current string into an array
@@ -50,6 +49,6 @@ def caesar_cipher(string, number)
   array.join('')
 end
 
-word = "Hello!"
+word = "What a string!"
 
-caesar_cipher(word, 3)
+caesar_cipher(word, 5)
