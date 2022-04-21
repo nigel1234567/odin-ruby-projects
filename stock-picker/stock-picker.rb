@@ -13,13 +13,13 @@ def stock_picker(array)
   while day < array.length do
     # Find current day position and price
     currentPrice = array[day]
-    p "* Current day is: #{day}"
+    # p "* Current day is: #{day}"
 
     # Splice array
     nextArray = array[day..array.length]
     # Find nextDay position
     nextDay = day + 1
-    p "* Day is: #{day}, price is: #{currentPrice}"
+    # p "* Day is: #{day}, price is: #{currentPrice}"
     # Create second loop to compare next position and price
     while nextDay < array.length do
       # Check if day is last day in array
@@ -27,12 +27,12 @@ def stock_picker(array)
         nextPrice = array[nextDay]
         # Price difference between next day and current day
         diffPrice = nextPrice - currentPrice
-        p "** Comparison day is: #{nextDay}, price is: #{nextPrice}, difference is: #{diffPrice}"
+        # p "** Comparison day is: #{nextDay}, price is: #{nextPrice}, difference is: #{diffPrice}"
         # Compare difference in price and max difference so far
         if diffPrice > maxDiff
           maxDiff = diffPrice
           maxArray = [day, nextDay]
-          p "Max difference is: #{maxDiff}, the days to buy and sell are: #{maxArray}"
+          # p "Max difference is: #{maxDiff}, the days to buy and sell are: #{maxArray}"
         end
       end
       # Go to next day
