@@ -3,9 +3,6 @@ def stock_picker(array)
   currentPrice = 0
   nextPrice = 0
 
-  # Declare best pair of days based on position
-  bestPair = []
-
   # Day
   day = 0
   # Declare max difference
