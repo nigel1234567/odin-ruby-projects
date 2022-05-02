@@ -26,6 +26,13 @@ def caesar_cipher(string, number)
       # If shifted number is in between 1-26 or 101-126
       if (x + number).between?(1, 26) || (x + number).between?(101, 126)
         x + number  
+      elsif (x + number) <= 0 
+        if (x + number).between?(-25, 0) 
+          26 + (x + number)
+        elsif (x + number).between?(-125, -100)
+          126 + (x + number)
+        else x
+        end
       # Else wrap back
       else (x + number) - 26
       end

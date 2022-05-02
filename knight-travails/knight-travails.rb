@@ -104,13 +104,13 @@ class MoveNode
 
   def children
     TRANSFORMATIONS.map { |t| [@position[0] + t[0], @position[1] + t[1]]}
-                    .keep_if { |e| MoveNode.valid?(e)}
-                    .reject { |e| @@history.include?(e)}
+                    .keep_if { |e| MoveNode.valid?(e)} # Remove invalid moves
+                    .reject { |e| @@history.include?(e)} # Exclude moves already in history
                     .map { |e| MoveNode.new(e, self)}
   end
 
   def self.valid?(position)
-    position[0].between?(1, 8) && position[1].between?(1, 8)
+    position[0].between?(1, 8) && position[1].between?(1, 8) # Check if values between 1 and 8
   end
 end
 
