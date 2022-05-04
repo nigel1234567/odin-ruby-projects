@@ -1,6 +1,10 @@
 require_relative 'cell'
 require_relative 'chess_pieces/pawn'
 require_relative 'chess_pieces/queen'
+require_relative 'chess_pieces/knight'
+require_relative 'chess_pieces/rook'
+require_relative 'chess_pieces/bishop'
+require_relative 'chess_pieces/king'
 
 
 class Board
@@ -94,10 +98,42 @@ class Board
       update(cell.cell_name, Pawn.new(w))
     end
     # Generate knights
+    current_row = board_array[0] # Black team
+    current_cell = current_row[1]
+    update(current_cell.cell_name, Knight.new(b))
+    current_cell = current_row[6]
+    update(current_cell.cell_name, Knight.new(b))
 
+    current_row = board_array[7] # White team
+    current_cell = current_row[1]
+    update(current_cell.cell_name, Knight.new(w))
+    current_cell = current_row[6]
+    update(current_cell.cell_name, Knight.new(w))
     # Generate rooks
+    current_row = board_array[0] # Black team
+    current_cell = current_row[0]
+    update(current_cell.cell_name, Rook.new(b))
+    current_cell = current_row[7]
+    update(current_cell.cell_name, Rook.new(b))
+
+    current_row = board_array[7] # White team
+    current_cell = current_row[0]
+    update(current_cell.cell_name, Rook.new(w))
+    current_cell = current_row[7]
+    update(current_cell.cell_name, Rook.new(w))
 
     # Generate bishops
+    current_row = board_array[0] # Black team
+    current_cell = current_row[2]
+    update(current_cell.cell_name, Bishop.new(b))
+    current_cell = current_row[5]
+    update(current_cell.cell_name, Bishop.new(b))
+
+    current_row = board_array[7] # White team
+    current_cell = current_row[2]
+    update(current_cell.cell_name, Bishop.new(w))
+    current_cell = current_row[5]
+    update(current_cell.cell_name, Bishop.new(w))
 
     # Generate queens
     current_row = board_array[0] # Black team
@@ -108,6 +144,13 @@ class Board
     current_cell = current_row[3]
     update(current_cell.cell_name, Queen.new(w))
     # Generate kings
+    current_row = board_array[0] # Black team
+    current_cell = current_row[4]
+    update(current_cell.cell_name, King.new(b))
+
+    current_row = board_array[7] # White team
+    current_cell = current_row[4]
+    update(current_cell.cell_name, King.new(w))
   end
 end
 
