@@ -47,11 +47,13 @@ class Game
     # Player choose cell
       puts "#{player.name}'s turn."
       puts "Please select a cell: "
-      chosen_cell = gets.chomp
+      cell = gets.chomp
+      chosen_cell = choose_cell(cell)
         # Check if selection is valid
-      if valid_selection?(player, chosen_cell.upcase)
+      if valid_selection?(player, cell.upcase)
         # Player choose new cell
-        
+        puts "Moving #{cell.chess_piece_name}."
+        puts "#{player.name}, please select a cell to move: "
         # Update new cell
         
         # Remove old cell
@@ -63,14 +65,18 @@ class Game
     end
   end
 
+  def choose_cell(cell)
+    array = cell.split('')
+    chosen_cell = @board.board[array[1].to_i - 1][LETTERS.index(array[0])]
+  end
+
   # Check that selected cell is not empty, within range of cells, and is player's team
   def valid_selection?(player, cell)
     # Teams
     team = player.team
     if CELLS.include?(cell) 
       # Select cell
-      array = cell.split('')
-      chosen_cell = @board.board[array[1].to_i - 1][LETTERS.index(array[0])]
+      chosen_cell = choose_cell(cell)
       if chosen_cell.chess_piece_name != nil
         if chosen_cell.chess_piece_team == team
           return true

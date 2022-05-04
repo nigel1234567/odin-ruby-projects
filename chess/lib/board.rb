@@ -10,6 +10,7 @@ class Board
 
   def initialize
     @board = build_board
+    @chosen_cell = nil
   end
 
   def build_board
@@ -58,9 +59,9 @@ class Board
     @chosen_cell.chess_piece_team = team
 
     # Check if pawn evolve to queen
-    if pawn_queen?(chosen_cell, piece)
+    if pawn_queen?(@chosen_cell, piece)
       piece = Queen.new(team)
-      update(chosen_cell.cell_name, piece)
+      update(@chosen_cell.cell_name, piece)
     end
 
   end
@@ -82,21 +83,15 @@ class Board
   def generate_pieces
     w = "white"
     b = "black"
-    board_array = board.board
-    row = []
+    board_array = @board
     # Generate pawns
-    row = [2, 7]
-    board_array.each_with_index do |row, index|
-      current_row = index + 1
-      if current_row == row[0] # Black team
-        current_row.each do |cell|
-          update(cell.cell_name, Pawn.new(b))
-        end
-      elsif current_row == row[1] # White team
-        current_row.each do |cell|
-          update(cell.cell_name, Pawn.new(w))
-        end
-      end
+    current_row = board_array[1] # Black team
+    current_row.each do |cell| 
+      update(cell.cell_name, Pawn.new(b))
+    end
+    current_row = board_array[6] # White team
+    current_row.each do |cell|
+      update(cell.cell_name, Pawn.new(w))
     end
     # Generate knights
 
@@ -105,14 +100,22 @@ class Board
     # Generate bishops
 
     # Generate queens
+    current_row = board_array[0] # Black team
+    current_cell = current_row[3]
+    update(current_cell.cell_name, Queen.new(b))
 
+    current_row = board_array[7] # White team
+    current_cell = current_row[3]
+    update(current_cell.cell_name, Queen.new(w))
     # Generate kings
   end
 end
 
-# x = Board.new
-# x.board
-# y = Pawn.new("black")
+x = Board.new
+x.board
+y = Pawn.new("black")
+x.generate_pieces
+x.show
 # x.update('A7', y)
 # x.show
 # x.update('A8', y)
